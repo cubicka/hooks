@@ -7,17 +7,11 @@ export default function useDimensions() {
     screen: Dimensions.get('screen'),
   })
 
-  const onChange = ({
-    window,
-    screen,
-  }: {
-    window: ScaledSize
-    screen: ScaledSize
-  }) => {
-    setDimensions({window, screen})
-  }
-
   useEffect(() => {
+    const onChange = ({ window, screen }: { window: ScaledSize; screen: ScaledSize }) => {
+      setDimensions({ window, screen })
+    }
+
     Dimensions.addEventListener('change', onChange)
 
     return () => Dimensions.removeEventListener('change', onChange)
